@@ -12,7 +12,7 @@
 #' @rdname Coordinates-class
 #' @author Georg Stricker \email{georg.stricker@@in.tum.de}
 setClass("Coordinates",
-         contains = "DataFrame",
+         contains = "DFrame",
          prototype = list(listData = list(start = NULL, end = NULL, width = NULL))
          )
 
