@@ -93,12 +93,7 @@
             warning("Subsetting by coordinates did not finish correctly, check the function or the coordinates")
         }
 
-        res <- switch(class(res[[1]]),
-                      GPos = do.call("c", res),
-                      GRanges = do.call("c", res),
-                      data.frame = do.call("rbind", res),
-                      DataFrame = do.call("rbind", res),
-                      DelayedMatrix = do.call("rbind", res))
+        res <- bindROWS(res[[1L]], res[-1L])
     }
 
     ## for all non-list objects

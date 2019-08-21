@@ -231,7 +231,7 @@
     }
 }
 
-### The folowing is modified from HDF5Array package. Thanks to Herve Pagès.
+### The following is modified from HDF5Array package. Thanks to Hervé Pagès.
 ## NOT USED as locking does not work for too many parallel workers
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

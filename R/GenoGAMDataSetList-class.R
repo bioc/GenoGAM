@@ -317,7 +317,7 @@ setMethod("design", "GenoGAMDataSetList", function(object) {
 
 #' @describeIn GenoGAMDataSetList Replace method of the design slot.
 setReplaceMethod("design", "GenoGAMDataSetList", function(object, value) {
-    newCols <- as.vector(na.omit(.getVars(value)))
+    newCols <- as.vector(stats::na.omit(.getVars(value)))
     if(!all(newCols %in% colnames(colData(object)))) {
         futile.logger::flog.error("'by' variables could not be found in colData")
         stop("'by' variables could not be found in colData")

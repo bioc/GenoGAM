@@ -626,8 +626,8 @@ GenoGAMDataSet <- function(experimentDesign, design, chunkSize = NULL, overhangS
     ## check the second element of the split name, which should be the
     ## identifier (and the creation date). Discard invalid files (which give NA)
     ## and in case of multiple identifiers select the first.
-    possibleIdentifiers <- unique(na.omit(sapply(splitFiles, function(y) y[identPos])))
-    return(possibleIdentifiers[1])
+    possibleIdentifiers <- stats::na.omit(sapply(splitFiles, function(y) y[identPos]))
+    return(unique(possibleIdentifiers)[[1L]])
 }
 
 #' Convert the config columns to the right type.
@@ -1141,7 +1141,7 @@ makeTestGenoGAMDataSet <- function(sim = FALSE) {
 }
 
 .checkFormulaVariables <- function(object) {
-    formulaCols <- as.vector(na.omit(.getVars(design(object))))
+    formulaCols <- as.vector(stats::na.omit(.getVars(design(object))))
     res <- all(formulaCols %in% colnames(colData(object)))
     if(!res) {
         res <- "'by' variables in design don't match colData"
@@ -1296,7 +1296,7 @@ setMethod("design", "GenoGAMDataSet", function(object) {
 
 #' @describeIn GenoGAMDataSet Replace method of the design slot.
 setReplaceMethod("design", "GenoGAMDataSet", function(object, value) {
-    newCols <- as.vector(na.omit(.getVars(value)))
+    newCols <- as.vector(stats::na.omit(.getVars(value)))
     if(!all(newCols %in% colnames(colData(object)))) {
         futile.logger::flog.error("'by' variables could not be found in colData")
         stop("'by' variables could not be found in colData")

@@ -283,9 +283,7 @@ asMates = TRUE for paired-end data", call. = FALSE)
 #' @return A GRanges object of intervals.
 #' @noRd
 .processCountChunks <- function(chunk, center, ...) {
-    paired <- switch(class(chunk),
-                     GAlignmentPairs = TRUE,
-                     GAlignments = FALSE)
+    paired <- is(chunk, "GAlignmentPairs")
     coords <- GenomicRanges::GRanges(GenomeInfoDb::seqlevels(chunk), IRanges::IRanges(1, GenomeInfoDb::seqlengths(chunk)))
 
     ## correct for unspecified reads and chunks containing only those

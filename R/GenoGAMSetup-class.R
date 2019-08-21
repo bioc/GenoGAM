@@ -362,7 +362,7 @@ setupGenoGAM <- function(ggd, lambda = NULL, theta = NULL, eps = 0, family = "nb
 ## get the design from formula
 .getDesignFromFormula <- function(formula, design) {
     formulaCols <- .getVars(formula)
-    designCols <- as.vector(na.omit(formulaCols))
+    designCols <- as.vector(stats::na.omit(formulaCols))
     newDesign <- as.matrix(design[,designCols])
     colnames(newDesign) <- designCols
 
